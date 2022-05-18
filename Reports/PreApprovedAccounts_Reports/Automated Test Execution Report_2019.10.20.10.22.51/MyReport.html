@@ -1,0 +1,2849 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='categories-view' onclick="_updateCurrentStage(1)"><i class='mdi-maps-local-offer'></i>Categories</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2019-10-20 10:26:19</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>0h 3m 28s+417ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>0h 3m 28s+417ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2019-10-20 10:22:51</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2019-10-20 10:26:19</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows 10</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>ABTS777</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_161</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>LAB10PF0ZSEYL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class='category-summary-view'>
+<div class='col l4 m6 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Categories</span>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Pre-Approved PL OD:
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='unknown'><a href='#!'>Unknown</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a data-activates='category-toggle' data-constrainwidth='false' data-beloworigin='true' data-hover='true' href='#' class='category-toggle dropdown-button button'><i class='mdi-maps-local-offer icon'></i></a>
+<ul id='category-toggle' class='dropdown-content'>
+<li class='Pre-Approved PL OD:'><a href='#!'>Pre-Approved PL OD:</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active unknown ' extentid='27fef3db-aec0-42d4-ae2d-011f16e6cc9a'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:22:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d823da1f-ec19-413b-aa40-ee39f4bd038e'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  assignpre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:22:59</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Assign Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:22:59</td>
+<td class='step-details'>CORRECT OR NO PASSWORD..</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:22:59</td>
+<td class='step-details'>Invalid User Credintials...</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='48d62aad-b897-49f1-ab08-0ec3cc6cee07'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:00</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='64731c3d-139c-412b-be7e-858103a0d895'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:04</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ddc5e0e9-f581-48b1-b0be-188fc09fd3ac'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:11</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:11</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:11</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='fe1afefd-f8f9-4c29-8d62-a24cc89aaba7'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:12</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:16</td>
+<td class='step-details'>Update Successful</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>10:23:16</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:16</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='f94d20b9-4112-430b-81a1-fc1f3d254c88'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:16</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:20</td>
+<td class='step-details'>Update Successful</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>10:23:20</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:20</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='06fe1430-e03f-4695-a1de-e219e7935c93'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:21</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:25</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:25</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:25</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='c11d4820-e28d-45bb-8dc6-7335b0581544'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:26</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:29</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:29</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:30</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d159df42-b267-4418-97cf-88b23f6d3794'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:31</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:36</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:36</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:36</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='f7af55f4-67e3-4102-ab1e-d615ded791c5'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:40</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:40</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:40</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='dfa7ac07-a3d4-4288-a10e-3c492eca892b'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:41</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:44</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:44</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:44</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='708f0d1e-916f-4a78-bcff-79b7f84f2d0b'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:45</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:48</td>
+<td class='step-details'>Update Successful</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>10:23:48</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:48</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='b798df24-6dbd-4d09-bcca-40b6e7a55037'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:49</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:53</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:53</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:53</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='6134d0cc-9e9d-4932-84b2-2fc870f11061'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:53</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:57</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:23:57</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:23:57</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='fc98cc54-4e88-4c48-854e-675bf5253864'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:23:58</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:01</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:01</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:01</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='424684b6-75e8-4995-9d8d-f5cb2614186f'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:02</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:06</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:06</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:06</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='6005aebe-157d-415a-a45f-d6493deb1f73'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='9d6c16dc-1587-4919-a61d-aaff096ac406'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:10</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='954e0429-c8e2-4cd5-9c2b-649b98c0d39d'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:14</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:18</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:18</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:18</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='459c45db-732f-46e5-a5f6-cdecc14caa2c'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:18</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:22</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:22</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:22</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='2aa8bd4f-e3c8-4b74-8ca1-3f6d2390115a'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:23</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:26</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:26</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:26</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='f7a69478-51d7-4bcb-a206-48479a569e0b'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:27</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:30</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:30</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:30</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='d374970f-440a-40b0-98eb-14d7ba820021'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:31</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='e2020d43-219d-405b-b519-78a9ad919eb1'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:35</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:38</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:38</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:38</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='4b5ab791-de5c-4f31-9086-665084ee9523'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:39</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:43</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:43</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:43</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='6aa3a5b2-95b1-493c-b68c-378e7741a701'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:44</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:47</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:24:47</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:24:47</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='85e3b27e-08aa-4e09-8205-6c9c6e140a71'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:48</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='51c7bef2-55a5-4b14-99b6-3bd0db20427f'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:52</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='02e59ef8-922e-4466-9192-96442ccd4588'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:24:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:00</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:00</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:00</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='3f3e694c-46b6-4e62-be41-c04e01d33f61'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:00</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:04</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:04</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:04</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='679c8d61-115b-47a8-aee9-0e581a7024c3'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:05</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:08</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:08</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:08</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='5a5e7b32-e055-4dbf-8c21-cd3f1e11fdab'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:09</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='1102532a-038d-4c32-b377-a550ca5be310'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:13</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='11e6310e-d851-482c-af2d-979922391760'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:20</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:20</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:20</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ddd922da-0390-4c78-bced-336f5960a9f3'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:21</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:24</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:24</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:24</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='fdda8a56-8360-41c7-913b-b1a96bcd4b38'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:29</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:29</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:29</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='2ed06c09-abf0-42c8-96d6-68641fb00c72'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:29</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:33</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:33</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:33</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='998ab65b-4dca-489f-8ff8-af4eaecd60ca'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:34</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:37</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:37</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:37</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='621c02a6-5c63-4466-86fd-818420910014'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:38</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:41</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:41</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:41</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active unknown ' extentid='96d90bd6-6056-4215-8deb-01a659b2a3e9'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize unknown'>unknown</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:42</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='6c0a93c5-ecb6-42e7-ac2a-1612aff8dde2'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:49</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:49</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:50</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='d04b5d00-2b7c-4a9c-8de8-3bcc85a39a05'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:50</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:54</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:54</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:54</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='ba83fa46-fd4c-40e6-97fa-0026e82067b7'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:55</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:58</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:25:58</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:25:58</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='4cbfd0c8-19fe-40e1-a729-0e9817bfff6e'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:25:59</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:02</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:26:02</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:02</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='3d62cda6-23ab-4e89-85d9-5a4bf635a8a7'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:26:03</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:06</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:26:06</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:06</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='dfd13d21-c0e4-462f-ad5f-70eea18efb3b'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:26:07</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:11</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:26:11</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:11</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='60c3494a-e026-4c72-8499-3e9b28b51cee'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:26:11</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:15</td>
+<td class='step-details'>Update Successful</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>10:26:15</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:15</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='e67da815-5564-4b50-a25c-211437cfce42'>
+<div class='test-head'>
+<span class='test-name'>Pre-Approved PL OD: </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide  pre-approvedplod:'></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-10-20 10:26:16</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-10-20 10:26:19</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 3s+490ms</span>
+</div>
+<div class='test-desc'>Test Case Scenarios</div>
+<div class='test-attributes'>
+<div class='categories'>
+<span class='category text-white'>Pre-Approved PL OD:</span>
+</div>
+<div class='authors'>
+<span class='author text-white'>AUTHOR: Data Management Team</span>
+</div>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:19</td>
+<td class='step-details'>No Update</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>10:26:19</td>
+<td class='step-details'>Data Management Team</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>10:26:19</td>
+<td class='step-details'><img class='report-img' data-featherlight='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' src='file:///C:\Users\ABTS777\Documents\TestDataManagementAutomationFrawork\Reports\PreApprovedAccounts_Reports\Automated Test Execution Report_2019.10.20.10.22.51\Screenshots\' /></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<div id='categories-view' class='row _addedTable hide'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Categories</h5>
+</div>
+<div class='card-panel filters'>
+<div class='search' alt='Search tests' title='Search tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v'>
+<div class='wrapper'>
+<ul id='cat-collection' class='cat-collection'>
+<li class='category-item displayed'>
+<div class='cat-head'>
+<span class='category-name'>Pre-Approved PL OD:</span>
+</div>
+<div class='category-status-counts'>
+<span class='fail label dot'>Fail: 1</span>
+</div>
+<div class='cat-body'>
+<div class='category-status-counts'>
+<div class='button-group'>
+<a href='#!' class='pass label filter'>Pass <span class='icon'>0</span></a>
+<a href='#!' class='fail label filter'>Fail <span class='icon'>1</span></a>
+<a href='#!' class='other label filter'>Others <span class='icon'>0</span></a>
+</div>
+</div>
+<div class='cat-tests'>
+<table class='bordered'>
+<thead>
+<tr>
+<th>RunDate</th>
+<th>Test Name</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class='fail'>
+<td>2019-10-20 10:26:16</td>
+<td><span class='category-link linked' extentid='e67da815-5564-4b50-a25c-211437cfce42'>Pre-Approved PL OD:</span></td>
+<td><div class='status label capitalize fail'>fail</div></td>
+</tr>
+<tbody>
+</table>
+</div>
+</div> 
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='cat-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='cat-name'></h5>
+<div class='cat-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>
